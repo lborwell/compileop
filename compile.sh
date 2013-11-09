@@ -28,6 +28,15 @@ echo $SPLIT
 echo "Compiling files"
 echo $SPLIT
 FILES=src/*.c
+FNAMES=()
+
+for f in $FILES
+do
+    fname=$(basename "$f")
+    fname="${fname%.*}"
+    FNAMES+=("$fname")
+done
+
 for o in $OPS
 do
     for f in $FILES
