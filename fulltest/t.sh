@@ -20,8 +20,6 @@ x=()
 p ${L[@]} > "bin/perms"
 while read line
 do
-    x+=$line
+    echo $line
 done < "bin/perms"
 
-echo ${L[@]}
-echo ${x[@]}

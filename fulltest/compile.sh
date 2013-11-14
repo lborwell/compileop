@@ -30,27 +30,29 @@ p() { [ $# -eq 0 ] && echo || (shift; p "$@") |
     done
 }
 
+L=()
+for ((i=0; i<${#OPS[@]} ; i++))
+do
+    L+=($i)
+done
 
-for o in $OPS
+p ${L[@]} > "bin/perms"
+
+while read line
 do
     for f in $FILES
     do
         fname=$(basename "$f")
         fname="${fname%.*}"
 
-        echo gcc -$o -o bin/$o/"$fname" "$f"
-        gcc -$o -o bin/$o/"$fname" "$f"
+        file=$fname
+        opl=()
+        for i in ${line[@]}
+        do
+            file+=$i
+            opl+=(-${OPS[$i]})
+        done
+        gcc ${opl[@]} -o "bin/$file" "$f"
+        echo gcc ${opl[@]} -o "bin/$file" "$f"
     done
-done
-
-for o in $EXTRA_OPS
-do
-    for f in $FILES
-    do
-        fname=$(basename "$f")
-        fname="${fname%.*}"
-
-        echo gcc -O1 -$o ${DISABLE[@]} -o bin/$o/"$fname" "$f"
-        gcc -O1 -$o ${DISABLE[@]} -o bin/$o/"$fname" "$f"
-    done
-done
+done < "bin/perms"

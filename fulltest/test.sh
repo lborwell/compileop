@@ -7,13 +7,15 @@ echo $SPLIT
 echo "Timing runs"
 echo $SPLIT
 
+FILES=bin/*
+
 echo -ne "test name," >> results.csv
 for d in $DIRS
 do
     echo -ne "$d," >> results.csv
 done
 
-for f in ${FNAMES[@]}
+for f in ${FILES[@]}
 do
     echo -ne "\n$f," >> results.csv
     for d in $DIRS
