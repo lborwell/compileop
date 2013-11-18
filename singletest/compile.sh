@@ -40,19 +40,40 @@ do
         fname=$(basename "$f")
         fname="${fname%.*}"
 
-        echo gcc -$o -o bin/$o/"$fname" "$f"
-        gcc -$o -o bin/$o/"$fname" "$f"
+        if [ ! $1 == "S" ]; then
+            echo gcc -$o -o bin/$o/"$fname" "$f"
+            gcc -$o -o bin/$o/"$fname" "$f"
+        fi
+        if [ $1 == "S" ]; then
+            echo gcc -S -$o -o bin/$o/"$fname" "$f"
+            gcc -S -$o -o bin/$o/"$fname" "$f"
+        fi
     done
 done
 
+
 for o in $EXTRA_OPS
 do
+    dis=()
+    for d in ${DISABLE[@]}
+    do
+        add="true"
+        if [ ! $o == $d ]; then
+            dis+=" -fno-$d"
+        fi
+    done
     for f in $FILES
     do
         fname=$(basename "$f")
         fname="${fname%.*}"
 
-        echo gcc -O1 -$o ${DISABLE[@]} -o bin/$o/"$fname" "$f"
-        gcc -O1 -$o ${DISABLE[@]} -o bin/$o/"$fname" "$f"
+        if [ ! $1 == "S" ]; then
+            echo gcc -O1 -f$o ${dis[@]} -o bin/$o/"$fname" "$f"
+            gcc -O1 "-f$o" ${dis[@]} -o bin/$o/"$fname" "$f"
+        fi
+        if [ $1 == "S" ]; then
+            echo gcc -S -O1 -f$o ${dis[@]} -o bin/$o/"$fname" "$f"
+            gcc -S -O1 "-f$o" ${dis[@]} -o bin/$o/"$fname" "$f"
+        fi
     done
 done

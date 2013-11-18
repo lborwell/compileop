@@ -46,18 +46,12 @@ crossjumping
 cse-follow-jumps  
 cse-skip-blocks 
 delete-null-pointer-checks 
-devirtualize 
-devirtualize-speculatively 
 expensive-optimizations 
 gcse  
 gcse-lm  
-hoist-adjacent-loads 
 inline-small-functions 
 indirect-inlining 
-ipa-sra 
-isolate-erroneous-paths 
 optimize-sibling-calls 
-partial-inlining 
 peephole2 
 reorder-blocks  
 reorder-functions 
@@ -69,15 +63,11 @@ schedule-insns2
 strict-aliasing 
 strict-overflow 
 tree-switch-conversion 
-tree-tail-merge 
 tree-pre 
 tree-vrp
 inline-functions
 unswitch-loops
 predictive-commoning
 gcse-after-reload
-tree-loop-vectorize
-tree-slp-vectorize
 vect-cost-model
-tree-partial-pre
-ipa-cp-clone options"
+ipa-cp-clone"

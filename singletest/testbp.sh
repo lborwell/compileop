@@ -30,7 +30,7 @@ do
                 echo -ne " $i"
                 #time prints to stderr, have to pipe to stdout
                 #unfortunately this breaks syntax highlighting
-                rs=$((/usr/bin/time -f %U ./$d/$f > /dev/null) 2>&1) #))
+                rs=$((/usr/bin/time -f %U ./$d/$f src/lstrace.out > /dev/null) 2>&1) #))
                 itot=$(echo $itot + $rs | bc)
                 if [ $itot > $MIN_TIME ] 
                 then
