@@ -17,3 +17,5 @@ These can be ignored.
 
 To run the scripts, simply execute *./run.sh*.
 Progress while running the tests is sent to *stdout*, while results are written to *results.csv*.
+
+Submitted 19/11/2013 as coursework to the University of St Andrews.
